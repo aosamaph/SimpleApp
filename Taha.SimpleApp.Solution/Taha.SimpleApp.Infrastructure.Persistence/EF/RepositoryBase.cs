@@ -23,7 +23,7 @@ namespace Taha.SimpleApp.Infrastructure.Persistence.EF
 
         public TKey Create(TEntity entity)
         {
-            _dbSet.Add(entity);
+            _dbSet.Add(entity);            
             var keyProperty = _context.Entry(entity).Property("Id").CurrentValue;
             return (TKey)keyProperty;
         }

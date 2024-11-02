@@ -26,7 +26,7 @@ namespace Taha.SimpleApp.Application.xUnit.Services.Products
         {
             int productId = 1;
             decimal discount = 0.1m;
-            var product = new Product("Test Product", new MoneyAmount(100, Currency.USD), "") { Id = productId };
+            var product = new Product("Test Product", "") { Id = productId, Price = new MoneyAmount(100, Currency.USD), };
             _productRepository.Setup(r => r.Get()).Returns(new List<Product> { product }.AsQueryable());
 
             bool result = _productService.ApplyDiscount(productId, discount);
@@ -64,7 +64,7 @@ namespace Taha.SimpleApp.Application.xUnit.Services.Products
         public void DeleteProduct_ReturnsTrue()
         {
             int productId = 1;
-            var product = new Product("Test Product", new MoneyAmount(100, Currency.USD), "") { Id = productId };
+            var product = new Product("Test Product", "") { Id = productId, Price = new MoneyAmount(100, Currency.USD) };
             _productRepository.Setup(r => r.Delete(productId)).Returns(product);
 
             bool result = _productService.DeleteProduct(productId);
@@ -79,8 +79,8 @@ namespace Taha.SimpleApp.Application.xUnit.Services.Products
             int categoryId = 1;
             var products = new List<Product>
             {
-                new("Product 1", new MoneyAmount(100, Currency.USD), "") { Id = 1, CategoryId = categoryId },
-                new("Product 2", new MoneyAmount(200, Currency.USD), "") { Id = 2, CategoryId = categoryId }
+                new("Product 1", "") { Id = 1, CategoryId = categoryId, Price = new MoneyAmount(100, Currency.USD), },
+                new("Product 2", "") { Id = 2, CategoryId = categoryId, Price = new MoneyAmount(200, Currency.USD) }
             };
             _productRepository.Setup(r => r.Get()).Returns(products.AsQueryable());
 
@@ -105,7 +105,7 @@ namespace Taha.SimpleApp.Application.xUnit.Services.Products
         public void GetProduct_ReturnsProductDto()
         {
             int productId = 1;
-            var product = new Product("Test Product", new MoneyAmount(100, Currency.USD), "") { Id = productId };
+            var product = new Product("Test Product", "") { Id = productId, Price = new MoneyAmount(100, Currency.USD) };
             _productRepository.Setup(r => r.Get()).Returns(new List<Product> { product }.AsQueryable());
 
             var result = _productService.GetProduct(productId);
@@ -130,8 +130,8 @@ namespace Taha.SimpleApp.Application.xUnit.Services.Products
             int categoryId = 1;
             var products = new List<Product>
             {
-                new("Product 1", new MoneyAmount(100, Currency.USD), "") { Id = 1, CategoryId = categoryId },
-                new("Product 2", new MoneyAmount(200, Currency.USD), "") { Id = 2, CategoryId = categoryId }
+                new("Product 1", "") { Id = 1, CategoryId = categoryId, Price = new MoneyAmount(100, Currency.USD) },
+                new("Product 2", "") { Id = 2, CategoryId = categoryId, Price = new MoneyAmount(200, Currency.USD) }
             };
             _productRepository.Setup(r => r.Get()).Returns(products.AsQueryable());
 
@@ -148,7 +148,7 @@ namespace Taha.SimpleApp.Application.xUnit.Services.Products
         {
             int productId = 1;
             string description = "New Description";
-            var product = new Product("Test Product", new MoneyAmount(100, Currency.USD), "") { Id = productId };
+            var product = new Product("Test Product", "") { Id = productId, Price = new MoneyAmount(100, Currency.USD) };
             _productRepository.Setup(r => r.Get()).Returns(new List<Product> { product }.AsQueryable());
 
             bool result = _productService.UpdateDescription(productId, description);
@@ -163,7 +163,7 @@ namespace Taha.SimpleApp.Application.xUnit.Services.Products
         {
             int productId = 1;
             string image = "New Image";
-            var product = new Product("Test Product", new MoneyAmount(100, Currency.USD), "") { Id = productId };
+            var product = new Product("Test Product", "") { Id = productId, Price = new MoneyAmount(100, Currency.USD) };
             _productRepository.Setup(r => r.Get()).Returns(new List<Product> { product }.AsQueryable());
 
             bool result = _productService.UpdateImage(productId, image);

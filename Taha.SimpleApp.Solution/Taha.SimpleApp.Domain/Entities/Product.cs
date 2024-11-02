@@ -5,21 +5,19 @@ namespace Taha.SimpleApp.Domain.Entities
     public class Product
     {
         public const int DESCRIPTION_MAX_LENGTH = 255;
-        
+
         private string _description;
-        
+        private MoneyAmount _price;
+
         public int Id { get; set; }
         public int CategoryId { get; set; }
 
-        public Product(string name, MoneyAmount price, string description)
+        public Product(string name, string description)
         {
             if (string.IsNullOrWhiteSpace(name))
                 throw new ArgumentNullException(nameof(name));
 
-            ArgumentNullException.ThrowIfNull(price);
-
             Name = name;
-            Price = price;
             _description = ValidDescription(description);
         }
 
@@ -35,7 +33,12 @@ namespace Taha.SimpleApp.Domain.Entities
         }
 
         public string Name { get; }
-        public MoneyAmount Price { get; }
+
+        public MoneyAmount Price
+        {
+            get => _price;
+            set => _price = new(value.Price, value.Currency);
+        }
         public string Description
         {
             get => _description;

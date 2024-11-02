@@ -101,6 +101,6 @@ namespace Taha.SimpleApp.Domain.xUnit.Aggregates
 
 
         private static Category CreateTestCategory() => new("Test Category");
-        private static Product CreateTestProduct() => new("Test Product", new MoneyAmount(1, Currency.USD), "Test Description");
+        private static Product CreateTestProduct() => new("Test Product", "Test Description") { Price = new MoneyAmount(1, Currency.USD) };
     }
 }

@@ -29,9 +29,10 @@ namespace Taha.SimpleApp.Application.Services.Products
 
         public int CreateProduct(int categoryId, string productName, decimal price, Currency currency)
         {
-            int id = _productRepository.Create(new(productName, new MoneyAmount(10, currency), "") { CategoryId = categoryId });
-
-            return id;
+            Product product = new(productName, "") { CategoryId = categoryId, Price = new(10, currency) };
+            _productRepository.Create(product);
+            _productRepository.SaveChanges();
+            return product.Id;
         }
 
         public bool DeleteProduct(int productId)
@@ -39,7 +40,7 @@ namespace Taha.SimpleApp.Application.Services.Products
             Product? product = _productRepository.Delete(productId);
             if (product is null)
                 throw new ProductNotFoundException(product);
-
+            _productRepository.SaveChanges();
             return true;
         }
 
@@ -52,6 +53,7 @@ namespace Taha.SimpleApp.Application.Services.Products
                 foreach (var id in ids)
                     _productRepository.Delete(id);
 
+                _productRepository.SaveChanges();
                 return true;
             }
             catch (Exception ex)
@@ -104,6 +106,8 @@ namespace Taha.SimpleApp.Application.Services.Products
             try
             {
                 _productRepository.Update(product);
+                _productRepository.SaveChanges();
+
                 return true;
             }
             catch (Exception ex)

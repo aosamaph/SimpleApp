@@ -8,7 +8,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSimpleApp();
-builder.Services.AddSimpleAppPersistence(!builder.Environment.IsDevelopment(), builder.Configuration.GetConnectionString("DefaultConnection") ?? "");
+if (builder.Environment.IsDevelopment())
+    builder.Services.AddOnlyStaticListsServices();
+else
+    builder.Services.AddOnlyEFServices(builder.Configuration.GetConnectionString("DefaultConnection"));
 
 var app = builder.Build();
 

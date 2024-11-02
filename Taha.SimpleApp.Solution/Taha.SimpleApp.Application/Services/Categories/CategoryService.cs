@@ -26,9 +26,9 @@ namespace Taha.SimpleApp.Application.Services.Categories
                 throw new DuplicateCategoryException(category);
 
             category = new(name);
-            int id = _categoryRepository.Create(category);
-
-            return id;
+            _categoryRepository.Create(category);
+            _categoryRepository.SaveChanges();
+            return category.Id;
         }
 
         public bool Delete(int categoryId, bool deleteProducts)
@@ -41,7 +41,7 @@ namespace Taha.SimpleApp.Application.Services.Categories
                 var deletedCategory = _categoryRepository.Delete(categoryId);
                 if (deletedCategory is null)
                     return false;
-                
+
                 _categoryRepository.SaveChanges();
                 return true;
             }

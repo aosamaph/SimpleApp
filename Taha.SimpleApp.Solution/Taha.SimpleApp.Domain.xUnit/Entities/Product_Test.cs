@@ -11,15 +11,8 @@ namespace Taha.SimpleApp.Domain.xUnit.Entities
         [InlineData(null)]
         public void CreateProductWithNullOrWhitespace_ThrowArgumentNullException(string name)
         {
-            ArgumentNullException ex = Assert.Throws<ArgumentNullException>(() => new Product(name, new(1, Currency.USD), ""));
+            ArgumentNullException ex = Assert.Throws<ArgumentNullException>(() => new Product(name, "") { Price = new(1, Currency.USD) });
             Assert.Equal(nameof(name), ex.ParamName);
-        }
-
-        [Fact]
-        public void CreateProductWithNullPrice_ThrowArgumentNullException()
-        {
-            ArgumentNullException ex = Assert.Throws<ArgumentNullException>(() => new Product("Test Product", null, ""));
-            Assert.Equal("price", ex.ParamName);
         }
 
         [Theory]
@@ -28,7 +21,7 @@ namespace Taha.SimpleApp.Domain.xUnit.Entities
         [InlineData(null)]
         public void CreateProductWithNullOrWhitespace_DescriptionIsSetWithEmptyString(string description)
         {
-            Product product = new("Test Product", new(1, Currency.USD), description);
+            Product product = new("Test Product", description) { Price = new(1, Currency.USD) };
 
             Assert.Equal(string.Empty, product.Description);
         }
@@ -38,7 +31,7 @@ namespace Taha.SimpleApp.Domain.xUnit.Entities
         {
             string longDescription = GetStringWithLength(Product.DESCRIPTION_MAX_LENGTH + 1);
 
-            ArgumentException ex = Assert.Throws<ArgumentException>(() => new Product("Test Product", new(1, Currency.USD), longDescription));
+            ArgumentException ex = Assert.Throws<ArgumentException>(() => new Product("Test Product", longDescription) { Price = new(1, Currency.USD), });
             Assert.Equal("description", ex.ParamName);
         }
 
@@ -48,7 +41,7 @@ namespace Taha.SimpleApp.Domain.xUnit.Entities
             string shortDescription = GetStringWithLength(1);
             string longDescription = GetStringWithLength(Product.DESCRIPTION_MAX_LENGTH + 1);
 
-            Product product = new("Test Product", new(1, Currency.USD), shortDescription);
+            Product product = new("Test Product", shortDescription) { Price = new(1, Currency.USD), };
 
             Assert.Throws<ArgumentException>(() => product.Description = longDescription);
             Assert.Equal(shortDescription, product.Description);
