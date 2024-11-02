@@ -45,7 +45,7 @@ namespace Taha.SimpleApp.Application.xUnit.Services.Products
             int productId = 1;
             _productRepository.Setup(r => r.Create(It.IsAny<Product>())).Returns(productId);
 
-            int result = _productService.CreateProduct(categoryId, productName, price);
+            int result = _productService.CreateProduct(categoryId, productName, price, Currency.USD);
 
             Assert.Equal(productId, result);
             _productRepository.Verify(r => r.Create(It.Is<Product>(p => p.Name == productName && p.CategoryId == categoryId)), Times.Once);

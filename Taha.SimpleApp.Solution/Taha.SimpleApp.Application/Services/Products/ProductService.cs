@@ -27,9 +27,9 @@ namespace Taha.SimpleApp.Application.Services.Products
             return UpdateProduct(product);
         }
 
-        public int CreateProduct(int categoryId, string productName, decimal price)
+        public int CreateProduct(int categoryId, string productName, decimal price, Currency currency)
         {
-            int id = _productRepository.Create(new(productName, new MoneyAmount(10, Currency.USD), "") { CategoryId = categoryId });
+            int id = _productRepository.Create(new(productName, new MoneyAmount(10, currency), "") { CategoryId = categoryId });
 
             return id;
         }

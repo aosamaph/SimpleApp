@@ -1,0 +1,42 @@
+@Taha.SimpleApp.API_HostAddress = http://localhost:5080/api
+
+### Get all products in a category
+GET {{Taha.SimpleApp.API_HostAddress}}/product/category/1
+Accept: application/json
+
+###
+
+### Get a product by ID
+GET {{Taha.SimpleApp.API_HostAddress}}/product/1
+Accept: application/json
+
+###
+
+### Create a new product
+POST {{Taha.SimpleApp.API_HostAddress}}/product/
+Content-Type: application/json
+
+{
+  "categoryId": 1,
+  "name": "New Product",
+  "price": 99.99,
+  "currency": 1
+}
+
+###
+
+### Update a product by ID
+PUT {{Taha.SimpleApp.API_HostAddress}}/product/
+Content-Type: application/json
+
+{
+  "id": 1,
+  "description": "Updated description",
+  "image": "updated_image_url"
+}
+
+###
+
+### Delete a product by ID
+DELETE {{Taha.SimpleApp.API_HostAddress}}/product/1
+Accept: application/json

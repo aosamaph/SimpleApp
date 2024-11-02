@@ -7,6 +7,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddSimpleApp();
+builder.Services.AddSimpleAppPersistence(!builder.Environment.IsDevelopment(), builder.Configuration.GetConnectionString("DefaultConnection") ?? "");
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -67,7 +67,7 @@ namespace Taha.SimpleApp.Application.xUnit.Services.Categories
         public void DeleteCategory_ReturnsTrue()
         {
             int categoryId = 1;
-            _categoryRepository.Setup(r => r.Delete(categoryId)).Verifiable();
+            _categoryRepository.Setup(r => r.Delete(categoryId)).Returns(new Category("name")).Verifiable();
 
             bool result = _categoryService.Delete(categoryId, false);
 
@@ -79,7 +79,7 @@ namespace Taha.SimpleApp.Application.xUnit.Services.Categories
         public void DeleteCategoryWithProducts_ReturnsTrue()
         {
             int categoryId = 1;
-            _categoryRepository.Setup(r => r.Delete(categoryId)).Verifiable();
+            _categoryRepository.Setup(r => r.Delete(categoryId)).Returns(CreateTestCategory()).Verifiable();
             _productService.Setup(p => p.DeleteProducts(categoryId)).Verifiable();
 
             bool result = _categoryService.Delete(categoryId, true);
@@ -87,6 +87,11 @@ namespace Taha.SimpleApp.Application.xUnit.Services.Categories
             Assert.True(result);
             _productService.Verify(p => p.DeleteProducts(categoryId), Times.Once);
             _categoryRepository.Verify(r => r.Delete(categoryId), Times.Once);
+        }
+
+        private static Category? CreateTestCategory()
+        {
+            return new Category("Test Category");
         }
 
         [Fact]

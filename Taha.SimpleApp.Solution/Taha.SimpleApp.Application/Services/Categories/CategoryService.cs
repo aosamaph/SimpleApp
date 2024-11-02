@@ -38,8 +38,11 @@ namespace Taha.SimpleApp.Application.Services.Categories
                 if (deleteProducts)
                     _productService.DeleteProducts(categoryId);
 
-                _categoryRepository.Delete(categoryId);
-
+                var deletedCategory = _categoryRepository.Delete(categoryId);
+                if (deletedCategory is null)
+                    return false;
+                
+                _categoryRepository.SaveChanges();
                 return true;
             }
             catch (Exception ex)

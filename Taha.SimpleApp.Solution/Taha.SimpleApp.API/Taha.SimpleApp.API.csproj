@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Taha.SimpleApp.Application\Taha.SimpleApp.Application.csproj" />
+    <ProjectReference Include="..\Taha.SimpleApp.Infrastructure.Persistence\Taha.SimpleApp.Infrastructure.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

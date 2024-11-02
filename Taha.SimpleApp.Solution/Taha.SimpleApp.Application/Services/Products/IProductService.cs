@@ -1,4 +1,5 @@
 ﻿using Taha.SimpleApp.Domain.Exceptions;
+using Taha.SimpleApp.Domain.ValueObjects;
 
 namespace Taha.SimpleApp.Application.Services.Products
 {
@@ -6,7 +7,7 @@ namespace Taha.SimpleApp.Application.Services.Products
     {
         /// <exception cref="CategoryNotFoundException"></exception>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        int CreateProduct(int categoryId, string productName, decimal price);
+        int CreateProduct(int categoryId, string productName, decimal price, Currency currency);
 
         /// <exception cref="ProductNotFoundException"></exception>
         ProductDto GetProduct(int productId);

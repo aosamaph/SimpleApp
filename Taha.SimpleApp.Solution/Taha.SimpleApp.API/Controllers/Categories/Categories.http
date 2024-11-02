@@ -1,0 +1,24 @@
+@Taha.SimpleApp.API_HostAddress = http://localhost:5080/api
+
+### Get all categories
+GET {{Taha.SimpleApp.API_HostAddress}}/category/
+Accept: application/json
+
+###
+
+### Get a category by ID
+GET {{Taha.SimpleApp.API_HostAddress}}/category/1
+Accept: application/json
+
+###
+
+### Create a new category
+POST {{Taha.SimpleApp.API_HostAddress}}/category/
+Content-Type: application/json
+"New Category"
+
+###
+
+### Delete a category by ID
+DELETE {{Taha.SimpleApp.API_HostAddress}}/category/1?deleteProducts=true
+Accept: application/json
