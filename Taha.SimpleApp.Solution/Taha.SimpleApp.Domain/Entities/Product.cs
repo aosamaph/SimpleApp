@@ -5,7 +5,11 @@ namespace Taha.SimpleApp.Domain.Entities
     public class Product
     {
         public const int DESCRIPTION_MAX_LENGTH = 255;
+        
         private string _description;
+        
+        public int Id { get; set; }
+        public int CategoryId { get; set; }
 
         public Product(string name, MoneyAmount price, string description)
         {

@@ -2,7 +2,7 @@
 
 namespace Taha.SimpleApp.Domain.Exceptions
 {
-    public class DuplicateProductException(Product product) : ProductException(product, "Product already exists")
+    public class DuplicateProductException(Product product) : EntityException<Product>("Product already exists", product)
     {
     }
 }

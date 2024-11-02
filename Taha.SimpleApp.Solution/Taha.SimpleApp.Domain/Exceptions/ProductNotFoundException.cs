@@ -2,7 +2,7 @@
 
 namespace Taha.SimpleApp.Domain.Exceptions
 {
-    public class ProductNotFoundException(Product product) : ProductException(product, "Product not found")
+    public class ProductNotFoundException(Product? product) : EntityException<Product>("Product not found", product)
     {
     }
 }

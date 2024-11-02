@@ -4,14 +4,30 @@
     {
         public MoneyAmount(decimal price, Currency currency)
         {
-            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(price);
             if (currency == Currency.None)
                 throw new ArgumentOutOfRangeException(nameof(currency), "Currency can not be None");
+
             Price = price;
             Currency = currency;
         }
 
-        public decimal Price { get; }
+        private decimal _price;
+        public decimal Price
+        {
+            get => _price;
+            private set
+            {
+                ArgumentOutOfRangeException.ThrowIfNegativeOrZero(value);
+                _price = value;
+            }
+        }
         public Currency Currency { get; }
+
+        public MoneyAmount Multiply(decimal amount)
+        {
+            amount *= Price;
+            Price = amount;
+            return this;
+        }
     }
 }

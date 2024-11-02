@@ -80,8 +80,8 @@ namespace Taha.SimpleApp.Domain.xUnit.Aggregates
 
             ProductNotFoundException ex = Assert.Throws<ProductNotFoundException>(() => category.RemoveProduct(product));
 
-            Assert.Equal(product, ex.Product);
-            Assert.Same(product, ex.Product);
+            Assert.Equal(product, ex.Entity);
+            Assert.Same(product, ex.Entity);
             Assert.Equal("Product not found", ex.Message);
         }
 
@@ -94,8 +94,8 @@ namespace Taha.SimpleApp.Domain.xUnit.Aggregates
 
             DuplicateProductException ex = Assert.Throws<DuplicateProductException>(() => category.AddProduct(product));
 
-            Assert.Equal(product, ex.Product);
-            Assert.Same(product, ex.Product);
+            Assert.Equal(product, ex.Entity);
+            Assert.Same(product, ex.Entity);
             Assert.Equal("Product already exists", ex.Message);
         }
 
