@@ -1,0 +1,41 @@
+<div class="row">
+  <!-- Sidebar -->
+  <div class="flex-column flex p-3">
+    <!-- Header with "+" Button at the top right -->
+    <div class="d-flex justify-content-between align-items-center mb-3 px-2">
+       <h5>Categories</h5>
+       <button (click)="openAddCategoryPopup()" class="btn btn-primary btn-sm">+</button>
+    </div>
+
+    <!-- Category Buttons Using @for -->
+    <div class="mb-3 p-3">
+      @for (category of categories; track category.id) {
+        <div class="row p-1">
+          <button class="btn btn-outline-primary mb-1" routerLinkActive="btn-primary text-white" routerLink="/product/category/{{category.id}}">
+            {{ category.name }}
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+</div>
+
+@if (showPopup) {
+  <div class="modal d-block" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add New Category</h5>
+          <button type="button" class="btn-close" (click)="closePopup()"></button>
+        </div>
+        <div class="modal-body">
+          <input #newCategoryName type="text" class="form-control" placeholder="Category name" />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="addCategory(newCategoryName.value)">Add</button>
+          <button type="button" class="btn btn-secondary" (click)="closePopup()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+}

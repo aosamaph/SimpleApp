@@ -13,6 +13,12 @@ if (builder.Environment.IsDevelopment())
 else
     builder.Services.AddOnlyEFServices(builder.Configuration.GetConnectionString("DefaultConnection"));
 
+
+builder.Services.AddCors(x => x.AddPolicy("MyPolicy", policyBuilder => 
+    policyBuilder.WithOrigins("http://localhost:4200")
+        .AllowAnyHeader()
+        .AllowAnyMethod()));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -21,8 +27,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 app.UseHttpsRedirection();
+
+app.UseCors("MyPolicy");
 
 app.UseAuthorization();
 

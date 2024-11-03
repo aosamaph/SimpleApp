@@ -1,0 +1,47 @@
+<div class="d-flex justify-content-between align-items-center mb-3 p-3">
+  <h5>Products</h5>
+  <button (click)="openAddProductPopup()" class="btn btn-primary btn-sm">+</button>
+</div>
+
+<div class="row p-4">
+  @for (product of products; track product.id) {
+    <div class="col-3 mb-4"> <!-- Each product card takes up 4 columns -->
+      <app-product-card
+        [productImage]="product.image"
+        [productName]="product.name"
+        [productPrice]="product.price"
+        [productCurrency]="product.currency"
+        [productDescription]="product.description"
+        [productId]="product.id!"
+        [categoryId]="catId"
+        (editFire)="fetchProducts(catId)"
+      >
+      </app-product-card>
+    </div>
+  }
+</div>
+
+
+@if (showModal) {
+  <div class="modal d-block" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add New Product</h5>
+          <button type="button" class="btn-close" (click)="closePopup()"></button>
+        </div>
+        <div class="modal-body">
+          <input [(ngModel)]="newProduct.name" type="text" class="form-control mb-2" placeholder="Product Name"/>
+          <input [(ngModel)]="newProduct.image" type="text" class="form-control mb-2" placeholder="Product Image URL"/>
+          <input [(ngModel)]="newProduct.price" type="number" class="form-control mb-2" placeholder="Price"/>
+          <input [(ngModel)]="newProduct.currency" type="number" class="form-control mb-2" placeholder="Currency"/>
+          <input [(ngModel)]="newProduct.description" type="text" class="form-control mb-2" placeholder="Description"/>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="onAddProduct()">Add</button>
+          <button type="button" class="btn btn-secondary" (click)="closePopup()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+}
