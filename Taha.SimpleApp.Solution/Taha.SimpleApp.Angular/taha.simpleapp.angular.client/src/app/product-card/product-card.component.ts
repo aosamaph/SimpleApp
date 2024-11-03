@@ -59,4 +59,9 @@ export class ProductCardComponent {
       this.closePopup();
     });
   }
+
+  delete(): void {
+    this.productsService.deleteProduct(this.product.id!)
+      .subscribe(() => { this.editFire.emit(); });
+  }
 }
