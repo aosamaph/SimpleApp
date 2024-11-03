@@ -29,7 +29,7 @@ namespace Taha.SimpleApp.Application.Services.Products
 
         public int CreateProduct(int categoryId, string productName, decimal price, Currency currency)
         {
-            Product product = new(productName, "") { CategoryId = categoryId, Price = new(10, currency) };
+            Product product = new(productName, "") { CategoryId = categoryId, Price = new(price, currency) };
             _productRepository.Create(product);
             _productRepository.SaveChanges();
             return product.Id;

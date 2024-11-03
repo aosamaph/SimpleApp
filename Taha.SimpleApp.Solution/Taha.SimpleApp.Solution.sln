@@ -9,11 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taha.SimpleApp.Application"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taha.SimpleApp.Domain", "Taha.SimpleApp.Domain\Taha.SimpleApp.Domain.csproj", "{36A2CAFF-EF08-4353-A940-951AA860C2FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taha.SimpleApp.Domain.xUnit", "Taha.SimpleApp.Domain.xUnit\Taha.SimpleApp.Domain.xUnit.csproj", "{E7C4CC82-919A-489D-9AEF-9024558A7367}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taha.SimpleApp.Domain.xUnit", "Taha.SimpleApp.Domain.xUnit\Taha.SimpleApp.Domain.xUnit.csproj", "{E7C4CC82-919A-489D-9AEF-9024558A7367}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taha.SimpleApp.Application.xUnit", "Taha.SimpleApp.Application.xUnit\Taha.SimpleApp.Application.xUnit.csproj", "{288E94F5-E027-43B8-987D-37320CF4C118}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taha.SimpleApp.Application.xUnit", "Taha.SimpleApp.Application.xUnit\Taha.SimpleApp.Application.xUnit.csproj", "{288E94F5-E027-43B8-987D-37320CF4C118}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taha.SimpleApp.Infrastructure.Persistence", "Taha.SimpleApp.Infrastructure.Persistence\Taha.SimpleApp.Infrastructure.Persistence.csproj", "{E8EAD90B-5B7E-4073-B9A1-D7E27B94E37D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taha.SimpleApp.Infrastructure.Persistence", "Taha.SimpleApp.Infrastructure.Persistence\Taha.SimpleApp.Infrastructure.Persistence.csproj", "{E8EAD90B-5B7E-4073-B9A1-D7E27B94E37D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
